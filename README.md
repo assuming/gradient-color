@@ -1,5 +1,5 @@
-# gradient-color README.md
-# gradient-color
+# Gradient color
+
 Make beautiful gradient color
 
 ## USAGE
@@ -21,3 +21,5 @@ var colors = getGradient(number, startColor, endColor)
 1. [ ] Support all color format (input and output)
 2. [ ] Add color stops
 3. [ ] Add test file
+4. [ ] Build system
+5. [ ] OMG, I almost did nothing!
