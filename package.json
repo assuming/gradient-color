@@ -1,0 +1,24 @@
+{
+  "name": "gradient-color",
+  "version": "1.0.0",
+  "description": "Make beautiful gradient color",
+  "main": "index.js",
+  "engines" : { "node" : ">=6.0" },
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/assuming/gradient-color.git"
+  },
+  "keywords": [
+    "color",
+    "gradient"
+  ],
+  "author": "ohmyxm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/assuming/gradient-color/issues"
+  },
+  "homepage": "https://github.com/assuming/gradient-color#readme"
+}
