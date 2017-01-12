@@ -1,6 +1,6 @@
 {
   "name": "gradient-color",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Make beautiful gradient color",
   "main": "./build/index.js",
   "engines": {
