@@ -2,10 +2,13 @@
   "name": "gradient-color",
   "version": "1.0.0",
   "description": "Make beautiful gradient color",
-  "main": "index.js",
-  "engines" : { "node" : ">=6.0" },
+  "main": "./build/index.js",
+  "engines": {
+    "node": ">=6.0"
+  },
   "scripts": {
-    
+    "test": "node ./test/test.js",
+    "build": "babel ./src --out-dir ./build"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/assuming/gradient-color/issues"
   },
-  "homepage": "https://github.com/assuming/gradient-color#readme"
+  "homepage": "https://github.com/assuming/gradient-color#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0"
+  }
 }
