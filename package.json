@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "node ./test/test.js",
+    "dev": "babel -w ./src --out-dir ./build",
     "build": "babel ./src --out-dir ./build"
   },
   "repository": {
@@ -26,7 +27,7 @@
   },
   "homepage": "https://github.com/assuming/gradient-color#readme",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0"
   },
   "dependencies": {
