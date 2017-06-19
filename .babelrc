@@ -1,4 +1,5 @@
 {
-  "presets": ["es2015", "stage-0"],
-  "ignore": ["nodule_modules/**/*.js"]
+  "plugins": [
+    "transform-object-rest-spread"
+  ]
 }
