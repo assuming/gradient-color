@@ -4,7 +4,7 @@ Gradient color generator
 
 **Attention**: This doc is for `v2.0`, `v1.x` usage is at the end of the doc, and it's deprecated
 
-### Installation
+## Installation
 
 `npm install gradient-color -S`
 
@@ -27,8 +27,6 @@ console.log(colors)
 ```
 
 ## API
-
-### Generate n color gradients using given color stops
 
 ```js
 gradient(colorArray, n)
@@ -69,16 +67,17 @@ where
   If you are using this method, there're several things you should remember:
 
   1. **The last color should not have a `frac` field**, so it can be either an `Object` with only color field or a `String` value
-  2. **The sum of all the fracs should equal to 1**
+  2. **The sum of all the `frac`s should equal to 1**
 
 
-- **n** is the number of color that will be in the generated colors. **It should be greater than the length of your `colorArray`**, that means: `n > colorArray.length`
+- **n** is the number of color that will be generated. **It should be greater than the length of your `colorArray`**, that means: `n > colorArray.length`
 
 
 ## Upcoming features
 
 - [ ] Alpha channel support
 - [ ] More color formats support
+- [ ] When `n = colorArray.length`, should just return the color in the `colorArray`
 
 ## Nasty old v1.x usage (deprecated)
 
