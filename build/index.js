@@ -1,4 +1,10 @@
 const Color = require('color');
+const {
+  NO_EDN_FRAC,
+  MIN_ARRAY_LENGTH,
+  FRAC_SUM_ERROR,
+  COLOR_NUMBER_ERROR
+} = require('./errors');
 
 /**
  * Generate n colors with given color stops
@@ -9,7 +15,7 @@ const Color = require('color');
  */
 
 function gradient(colorArray, n) {
-  const isFullOption = checkParam(colorArray);
+  const isFullOption = checkParam(colorArray, n);
 
   // init 2 arrays for algorithm
   let colorList = [];
@@ -19,7 +25,7 @@ function gradient(colorArray, n) {
 
   // simple array of color string
   if (!isFullOption) {
-    const frac = parseFloat((1 / (colorArray.length - 1)).toFixed(2));
+    const frac = 1 / (colorArray.length - 1);
 
     colorArray.forEach((colorString, index) => {
       if (index !== colorArray.length - 1) {
@@ -33,7 +39,7 @@ function gradient(colorArray, n) {
     colorArray.forEach((obj, index) => {
       if (index !== colorArray.length - 1) {
         colorList.push(Color(obj.color));
-        fracList.push(parseFloat(obj.frac.toFixed(2)));
+        fracList.push(obj.frac);
       } else {
         if (obj.color) {
           // the last item could be like { color: #ffffff }
@@ -45,8 +51,6 @@ function gradient(colorArray, n) {
       }
     });
   }
-
-  console.log(fracList);
 
   const assignList = assignNumbers(fracList, n);
   resultArray = createGradient(colorList, assignList);
@@ -112,7 +116,25 @@ function createGradient(colorList, assignList) {
 }
 
 /**
+ * Calculate and optimize the number of each color period
  * 
+ * Sometimes frac * N might be a fraction
+ * So we use this algorithm:
+ * 
+ * 1. Split the number into 2 parts, each part fits in an array:
+ * [2, 4, 1, 5]         -> int array
+ * [0.2, 0.5, 0.9, 0.3] -> decimal array
+ * 
+ * The left number should be:
+ * left = N - sum(intArray)
+ * 
+ * 2. Sort the decimal array from large to small, assign left to
+ * the corresponding element in intArray one by one
+ * until left === 0
+ * 
+ * 3. There goes your final array!
+ * 
+ * @returns {Array} array of optimized color numbers
  */
 
 function assignNumbers(fracList, n) {
@@ -152,10 +174,31 @@ function assignNumbers(fracList, n) {
  * Check param format and throw some errors
  */
 
-function checkParam(array) {
-  // TODO: colorArray format check
+function checkParam(array, n) {
+  // Seriously? Anyone this dumb?
+  if (array.length < 2) {
+    throw MIN_ARRAY_LENGTH;
+  }
 
-  let result = null;
+  // Read the documentation OMG! Of course no frac at the end!
+  if (array[array.length - 1].frac) {
+    throw NO_EDN_FRAC;
+  }
+
+  // You need to see a doctor, like, right now
+  if (n <= array.length) {
+    throw COLOR_NUMBER_ERROR;
+  }
+
+  // if full option mode, sum should be 1
+  if (typeof array[0] !== 'string') {
+    const fracSum = array.slice(0, array.length - 1).reduce((a, b) => a + b.frac, 0);
+    if (fracSum < 0.99) {
+      throw FRAC_SUM_ERROR;
+    }
+  }
+
+  let result;
 
   if (typeof array[0] === 'string') {
     result = false;
