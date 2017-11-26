@@ -1,5 +1,5 @@
-const test = require('blue-tape')
-const gradient = require('../build/index')
+import test from 'blue-tape'
+import gradient from '../build/index'
 
 
 test('Generated length should be equal', async t => {

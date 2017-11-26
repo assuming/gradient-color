@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/assuming/gradient-color#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "blue-tape": "^1.0.0",
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "color": "^1.0.3"
+    "color": "^2.0.1"
   }
 }
