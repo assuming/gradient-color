@@ -35,3 +35,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Skip yarn.lock and rely on package-lock.json from npm
+yarn.lock

@@ -7,7 +7,7 @@
     "node": ">=6.0"
   },
   "scripts": {
-    "test": "tape test/*.js | tap-notify | tap-diff",
+    "test": "babel-tape-runner test/*.js | tap-notify | tap-diff",
     "dev": "babel -w ./src --out-dir ./build",
     "build": "babel ./src --out-dir ./build"
   },
@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-tape-runner": "^2.0.1",
     "blue-tape": "^1.0.0",
     "tape": "^4.6.3"
   },
