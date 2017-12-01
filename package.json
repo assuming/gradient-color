@@ -1,6 +1,6 @@
 {
   "name": "gradient-color",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Gradient color generator that lives in 21st",
   "main": "./build/index.js",
   "engines": {
