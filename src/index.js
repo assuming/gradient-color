@@ -1,16 +1,16 @@
-const Color = require('color')
-const {
+import Color from 'color'
+import {
   NO_EDN_FRAC,
   MIN_ARRAY_LENGTH,
   FRAC_SUM_ERROR,
-  COLOR_NUMBER_ERROR
-} = require('./errors')
+  COLOR_NUMBER_ERROR,
+} from './errors'
 
 /**
  * Generate n colors with given color stops
- * 
- * @param   {Array}  colorArray 
- * @param   {Number} n          number of colors that need to generate 
+ *
+ * @param   {Array}  colorArray
+ * @param   {Number} n          number of colors that need to generate
  * @returns {Array} array of generated colors in rgb mode
  */
 
@@ -65,12 +65,12 @@ function gradient(colorArray, n) {
  * Explainations:
  * o -> stop color for gradient
  * * -> generated color
- * 
+ *
  * o * * * | o * * * * | o * * o -> generated color list in char version
  *    4          5          4    -> assigned number of colors need to be generated
- * 
+ *
  * The last section, the end color should be considered in the generated colors
- * 
+ *
  * @returns {Array} array of colors in Color(pkg) format, need toString() call
  */
 
@@ -94,13 +94,13 @@ function createGradient(colorList, assignList) {
     const deltaR = (end.red() - start.red()) / num
     const deltaG = (end.green() - start.green()) / num
     const deltaB = (end.blue() - start.blue()) / num
-    
+
     // generate num colors
     for (let i = 0; i < num; i++) {
       const R = start.red() + i * deltaR
       const G = start.green() + i * deltaG
       const B = start.blue() + i * deltaB
-      
+
       list.push(Color.rgb(R, G, B))
     }
 
@@ -108,7 +108,7 @@ function createGradient(colorList, assignList) {
     if (isLastElement) {
       list.push(end)
     }
-    
+
     result = result.concat(list)
   })
 
@@ -117,23 +117,23 @@ function createGradient(colorList, assignList) {
 
 /**
  * Calculate and optimize the number of each color period
- * 
+ *
  * Sometimes frac * N might be a fraction
  * So we use this algorithm:
- * 
+ *
  * 1. Split the number into 2 parts, each part fits in an array:
  * [2, 4, 1, 5]         -> int array
  * [0.2, 0.5, 0.9, 0.3] -> decimal array
- * 
+ *
  * The left number should be:
  * left = N - sum(intArray)
- * 
+ *
  * 2. Sort the decimal array from large to small, assign left to
  * the corresponding element in intArray one by one
  * until left === 0
- * 
+ *
  * 3. There goes your final array!
- * 
+ *
  * @returns {Array} array of optimized color numbers
  */
 
@@ -159,12 +159,12 @@ function assignNumbers(fracList, n) {
 
   // sort O -> o
   decimalArray.sort((a, b) => b.value - a.value)
-  
+
   // assign the left number regard to the decimal part's value
   // until nothing left
   for (let i = 0; i < left; i++) {
     const targetIndex = decimalArray[i].index
-    intArray[targetIndex] = intArray[targetIndex] + 1 
+    intArray[targetIndex] = intArray[targetIndex] + 1
   }
 
   return intArray
@@ -211,4 +211,4 @@ function checkParam(array, n) {
   return result
 }
 
-module.exports = gradient
+export default gradient
